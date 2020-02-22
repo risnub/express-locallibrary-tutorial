@@ -3,6 +3,7 @@ var Book = require('../models/book');
 var validator = require('express-validator');
 var async = require('async');
 const  status_list = [ 'Maintenance', 'Available', 'Loaned', 'Reserved' ];
+var debug = require('debug')('bookinstance');
 
 exports.bookinstance_list = function(req, res, next) {
     BookInstance.find()
@@ -60,9 +61,9 @@ exports.bookinstance_create_post = [
     
     (req, res, next) => {
         // check validator errors
-        console.log('Getting validator results');
+        debug('Getting validator results');
         verrs = validator.validationResult(req);
-        console.log(verrs.array());
+        debug(verrs.array());
 
         // create new Record
         var bookinstance = new BookInstance(
