@@ -13,7 +13,8 @@ var app = express();
 
 // mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://mdn-user:mdn-tutorial@sandbox-vkrck.mongodb.net/local_library?retryWrites=true&w=majority'
+var mongo_db_url = 'mongodb+srv://mdn-user:mdn-tutorial@sandbox-vkrck.mongodb.net/local_library?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGODB_URI || mongo_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
